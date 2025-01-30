@@ -1,15 +1,11 @@
-from langchain_openai import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
-from os import environ
+from open_ai_client import chat
 
 
-open_ai_key = environ.get("OPEN_API_KEY")
-
-chat = ChatOpenAI(api_key=open_ai_key)
 # Short response
-resultado = chat.invoke([HumanMessage(content="Can you tell me where is caceres?")])
+result = chat.invoke([HumanMessage(content="Can you tell me where is caceres?")])
 
-print(resultado.content)
+print(result.content)
 
 # Response more detail
 messages = [
@@ -17,9 +13,9 @@ messages = [
     HumanMessage(content="Can you tell me where is caceres?"),
 ]
 
-resultado = chat.invoke(messages)
+result = chat.invoke(messages)
 
-print(resultado.content)
+print(result.content)
 
 
 messages = [
@@ -35,10 +31,10 @@ messages = [
     ],
 ]
 
-resultado = chat.generate(messages)
+result = chat.generate(messages)
 
 # Response to firts message
-print(resultado.generations[0][0].text)
+print(result.generations[0][0].text)
 
 # Respose to second message
-print(resultado.generations[1][0].text)
+print(result.generations[1][0].text)
